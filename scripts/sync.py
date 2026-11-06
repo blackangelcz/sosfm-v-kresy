@@ -214,6 +214,26 @@ def build_section(folder, slug, label, used, problems):
     return {"slug": slug, "label": label, "kind": "drawings", "bundle": bundle, "items": drawings}
 
 
+def year_manual_heading(page):
+    spans = [
+        (round(span["size"], 1), span["text"].strip())
+        for block in page.get_text("dict")["blocks"]
+        for line in block.get("lines", [])
+        for span in line["spans"]
+        if span["text"].strip()
+    ]
+    for index, (_, text) in enumerate(spans):
+        if re.fullmatch(r"\d\. ročník", text) and index + 1 < len(spans):
+            size = spans[index + 1][0]
+            heading = []
+            for span_size, span_text in spans[index + 1:]:
+                if span_size != size:
+                    break
+                heading.append(span_text)
+            return text, " ".join(heading)
+    return None
+
+
 def build_materials(used, problems):
     folder, slug, label = MATERIALS
     items = []
@@ -222,6 +242,9 @@ def build_materials(used, problems):
         lines = [line.strip() for line in document[0].get_text().split("\n") if line.strip()]
         title = lines[1] if len(lines) > 1 else path.stem
         subtitle = " ".join(lines[2:4]) if len(lines) > 3 else ""
+        year_manual = year_manual_heading(document[0])
+        if year_manual:
+            title, subtitle = year_manual
         words = set()
         pages = []
         target_dir = SHEET_OUT / slug
