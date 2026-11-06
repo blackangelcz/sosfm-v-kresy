@@ -231,6 +231,15 @@ def year_manual_heading(page):
                     break
                 heading.append(span_text)
             return text, " ".join(heading)
+    for index, (_, text) in enumerate(spans):
+        if text == "Řídicí systém" and index + 2 < len(spans):
+            size = spans[index + 2][0]
+            description = []
+            for span_size, span_text in spans[index + 2:]:
+                if span_size != size:
+                    break
+                description.append(span_text)
+            return spans[index + 1][1], " ".join(description)
     return None
 
 
