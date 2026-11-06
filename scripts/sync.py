@@ -37,7 +37,7 @@ SECTIONS = [
     ("tvarové díly fréza", "tvarove-dily-freza", "Tvarové díly fréza"),
     ("loga", "loga", "Loga"),
 ]
-MATERIALS = ("MATERIÁLY", "materialy", "Učební materiály")
+MATERIALS = ("MATERIÁLY", "materialy", "Výukové materiály")
 EXCLUDED_PREFIXES = ("MZ 2026",)
 NOISE = {"Bod", "X", "Y", "Dráha", "R", "G1", "G2", "G3", "start", "POZ.", "NÁZEV", "KS", "VÝKRES", "POLOTOVAR", "A", "B", "C", "D", "E", "F"}
 

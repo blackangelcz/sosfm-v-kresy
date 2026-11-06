@@ -16,7 +16,7 @@ export default function Hero() {
   const facts = [
     { label: 'Výkresů', value: drawingCount },
     { label: 'Souhrnných sad', value: bundleCount },
-    { label: 'Učebních materiálů', value: materialCount },
+    { label: 'Výukových materiálů', value: materialCount },
     { label: 'Nejnovější výkres', value: latestDate(allItems) },
   ]
 

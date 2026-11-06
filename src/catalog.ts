@@ -50,7 +50,7 @@ export const technologyLabels: Record<Technology, string> = {
   turning: 'Soustružení',
   milling: 'Frézování',
   assembly: 'Sestava',
-  material: 'Učební materiál',
+  material: 'Výukový materiál',
 }
 
 export function normalize(value: string) {
